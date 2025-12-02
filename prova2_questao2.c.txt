@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <string.h>
+#define QTD 100
+#define TAM 101
+
+float calculaMedia(char str[][TAM], int tamanho, float media) {
+	int soma = 0;
+	for (int i = 0; i < tamanho; i++) {
+		soma = soma+strlen(str[i]);
+	}
+	media=soma/tamanho;
+	return media;
+}
+
+int main() {
+	FILE *arquivo;
+	char frases[QTD][TAM];
+	float media;
+	char linhas[QTD][TAM];
+	int n = 0;
+	int i;
+
+	arquivo = fopen("frases.txt", "w");
+	if (arquivo == NULL) {
+		printf("Erro ao abrir o arquivo!");
+		return 1;
+	}
+
+	printf("Digite 100 frases com ateh 100 caracteres cada:\n");
+
+	for (i = 0; i < QTD; i++) {
+		printf("Frase %d:\n ", i + 1);
+		fgets(frases[i], TAM, stdin);
+
+
+		frases[i][strcspn(frases[i], "\n")] = '\0';
+
+
+		fprintf(arquivo, "%s\n", frases[i]);
+	}
+
+	fclose(arquivo);
+
+	arquivo = fopen("frases.txt", "r");
+	if (arquivo == NULL) {
+		printf("Erro ao abrir o arquivo!");
+		return 1;
+	}
+
+
+	while (n < QTD && fgets(linhas[n], TAM, arquivo) != NULL) {
+		linhas[n][strcspn(linhas[n], "\n")] = '\0';
+		n=n+1;
+	}
+
+	fclose(arquivo);
+
+	printf("Strings lidas do arquivo:\n");
+	for (i = 0; i < n; i++) {
+		printf("%d: %s\n", i+1, frases[i]);
+	}
+
+
+	printf("Conteudo do vetor:\n");
+	for (i = 0; i < n; i++) {
+		printf("%d: %s\n", i+1, linhas[i]);
+	}
+
+	printf("\nMedia de caracteres por frase: %.2f", calculaMedia(linhas,n,media));
+
+	return 0;
+}
+
+
