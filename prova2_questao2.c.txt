@@ -30,7 +30,7 @@ int main() {
 	printf("Digite 100 frases com ateh 100 caracteres cada:\n");
 
 	for (i = 0; i < QTD; i++) {
-		printf("Frase %d:\n ", i + 1);
+		printf("Frase %d:", i + 1);
 		fgets(frases[i], TAM, stdin);
 
 
@@ -71,6 +71,7 @@ int main() {
 
 	return 0;
 }
+
 
 
 
