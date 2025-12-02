@@ -5,7 +5,8 @@
 
 float calculaMedia(char str[][TAM], int tamanho, float media) {
 	int soma = 0;
-	for (int i = 0; i < tamanho; i++) {
+    int i;
+	for (i = 0; i < tamanho; i++) {
 		soma = soma+strlen(str[i]);
 	}
 	media=soma/tamanho;
@@ -70,5 +71,6 @@ int main() {
 
 	return 0;
 }
+
 
 
